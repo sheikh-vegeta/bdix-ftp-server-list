@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A list of valid FTP server URLs for BDIX.">
+    <meta name="keywords" content="BDIX, FTP, server, list, valid URLs">
+    <meta name="author" content="Sheikh Vegeta">
+    <title>Valid BDIX FTP Server URLs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            color: #333;
+        }
+        .url-list {
+            list-style: none;
+            padding: 0;
+        }
+        .url-list li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .url-list .url {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .url-list .url:hover {
+            text-decoration: underline;
+        }
+        .url-list .button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .url-list .button:hover {
+            background-color: #0056b3;
+        }
+        @media (max-width: 600px) {
+            .url-list li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .url-list .button {
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Valid BDIX FTP Server URLs</h1>
+        </div>
+        <ul class="url-list">
+            {% for url in valid_urls %}
+            <li>
+                <a class="url" href="{{ url }}">{{ url }}</a>
+                <button class="button" onclick="window.open('{{ url }}', '_blank')">Open in New Tab</button>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
