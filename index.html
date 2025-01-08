@@ -3,90 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A list of valid FTP server URLs for BDIX.">
-    <meta name="keywords" content="BDIX, FTP, server, list, valid URLs">
+    <meta name="description" content="A modern and responsive viewer for BDIX FTP Server links. Easily access and open links in a user-friendly interface.">
+    <meta name="keywords" content="BDIX, FTP Server, BDIX FTP Links, FTP Viewer, BDIX Links">
     <meta name="author" content="Sheikh Vegeta">
-    <title>Valid BDIX FTP Server URLs</title>
+    <meta name="robots" content="index, follow">
+    <title>BDIX FTP Server Links Viewer</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f4f4f9;
+            color: #333;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        .header {
+
+        h1 {
             text-align: center;
             margin-bottom: 20px;
         }
-        .header h1 {
-            color: #333;
-        }
-        .url-list {
-            list-style: none;
-            padding: 0;
-        }
-        .url-list li {
-            background: #fff;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        .link-card {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .url-list .url {
-            color: #007BFF;
-            text-decoration: none;
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
-        .url-list .url:hover {
-            text-decoration: underline;
+
+        .link-text {
+            font-size: 1.2em;
+            word-break: break-all;
         }
-        .url-list .button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
+
+        .btn-open {
             padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            border: none;
             border-radius: 5px;
             cursor: pointer;
-            text-align: center;
             text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
+            transition: background-color 0.3s;
         }
-        .url-list .button:hover {
+
+        .btn-open:hover {
             background-color: #0056b3;
         }
-        @media (max-width: 600px) {
-            .url-list li {
+
+        @media (max-width: 768px) {
+            .link-card {
                 flex-direction: column;
-                align-items: flex-start;
+                text-align: center;
             }
-            .url-list .button {
+
+            .btn-open {
                 margin-top: 10px;
-                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Valid BDIX FTP Server URLs</h1>
+        <h1>BDIX FTP Server Links Viewer</h1>
+        <div id="links-container">
+            <!-- Links will be loaded here dynamically -->
         </div>
-        <ul class="url-list">
-            {% for url in valid_urls %}
-            <li>
-                <a class="url" href="{{ url }}">{{ url }}</a>
-                <button class="button" onclick="window.open('{{ url }}', '_blank')">Open in New Tab</button>
-            </li>
-            {% endfor %}
-        </ul>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const jsonUrl = "https://raw.githubusercontent.com/sheikh-vegeta/bdix-ftp-server-list/refs/heads/main/links.json";
+            const linksContainer = document.getElementById("links-container");
+
+            fetch(jsonUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const links = data.urls;
+                    links.forEach(link => {
+                        const linkCard = document.createElement("div");
+                        linkCard.className = "link-card";
+
+                        const linkText = document.createElement("div");
+                        linkText.className = "link-text";
+                        linkText.textContent = link;
+
+                        const openButton = document.createElement("a");
+                        openButton.className = "btn-open";
+                        openButton.href = link;
+                        openButton.target = "_blank";
+                        openButton.textContent = "Open";
+
+                        linkCard.appendChild(linkText);
+                        linkCard.appendChild(openButton);
+                        linksContainer.appendChild(linkCard);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error fetching or parsing the JSON file:", error);
+                    linksContainer.textContent = "Failed to load links. Please try again later.";
+                });
+        });
+    </script>
 </body>
 </html>
