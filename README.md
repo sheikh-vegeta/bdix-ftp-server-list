@@ -220,7 +220,6 @@
 
 111. [Quick Online FTP](http://quickonlineftp.com/)
 
-(adsbygoogle = window.adsbygoogle || \[\]).push({});
 
 112. [SLN ISP](https://slnisp.com.bd/)
 
@@ -506,7 +505,6 @@
 
 253. [Gnet Internet](https://www.gnetinternet.com/)
 
-(adsbygoogle = window.adsbygoogle || \[\]).push({});
 
 254. [BD 7Hub](https://www.bd7hub.net/)
 
