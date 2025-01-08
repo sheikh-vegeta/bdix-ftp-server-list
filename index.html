@@ -8,9 +8,11 @@
     <meta name="author" content="Sheikh Vegeta">
     <meta name="robots" content="index, follow">
     <title>BDIX FTP Server Links Viewer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f9;
@@ -26,6 +28,8 @@
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #007bff;
         }
 
         .link-card {
@@ -33,21 +37,22 @@
             justify-content: space-between;
             align-items: center;
             background: #fff;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .link-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
         }
 
         .link-text {
             font-size: 1.2em;
             word-break: break-all;
+            flex-grow: 1;
         }
 
         .btn-open {
